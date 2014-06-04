@@ -1,8 +1,9 @@
 
-#Fetch and unzip file if it doesn't exist.
+# Set string Variables
 localdir=getwd()
 filename="household_power_consumption.txt"
 
+# IF file doesn't exist in working direcotry, dl to tmp and expand in wd.
 if(!(file_test(op="-f",x=paste(localdir,'/',filename,sep='')))){
 # create a temporary file and a temporary directory on your local disk
 tf <- tempfile()
@@ -22,6 +23,7 @@ files <- unzip( tf , exdir = getwd() )
 require(lubridate)
 require(dplyr)
 
+#Read in and subset
 full_power = read.csv(paste(localdir,'/',filename,sep=''),
   sep=";",stringsAsFactors=FALSE,na.strings="?")
 
