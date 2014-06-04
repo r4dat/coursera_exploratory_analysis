@@ -11,7 +11,7 @@ td <- tempdir()
 
 # run the download file function, download as binary..  save the result to the temporary file
 download.file(
-  "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip",
+  "https://d396qusza40orc.cloudfront.net/exdata/data/household_power_consumption.zip",
   tf ,
   mode = 'wb' 
 )
