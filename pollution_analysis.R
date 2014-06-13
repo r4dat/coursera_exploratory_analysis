@@ -21,3 +21,8 @@ barplot(baltSumm$ToTEmissions,names=baltSumm$year,
         col="orange")
 
 ## 3 check changes by type over time in baltimore city.
+baltsplit = ddply(balt_all,.(type,year),
+                  summarize,TotEmissions=sum(Emissions))
+
+## Plot faceted versions. Currently dot plot.
+ggplot(baltsplit,aes(x=year))+stat_identity(aes(y=TotEmissions))+facet_wrap(~type)
