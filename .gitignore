@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 household_power_consumption.txt
+summarySCC_PM25.rds
+Source_Classification_Code.rds
