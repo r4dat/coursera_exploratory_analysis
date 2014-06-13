@@ -1,6 +1,6 @@
 require(plyr)
 require(ggplot2)
-source(get_data.R)
+source("get_data.R")
 
 totSumm = ddply(NEI,.(year),summarize,ToTEmissions=sum(Emissions))
 
