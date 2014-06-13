@@ -1,4 +1,5 @@
 require(plyr)
+require(ggplot2)
 source(get_data.R)
 
 totSumm = ddply(NEI,.(year),summarize,ToTEmissions=sum(Emissions))
@@ -14,3 +15,9 @@ barplot(totSumm$ToTEmissions/1000,names=totSumm$year,
 baltSumm = ddply(NEI[NEI$fips=="24510",],.(year),
                  summarize,ToTEmissions=sum(Emissions))
 
+barplot(baltSumm$ToTEmissions,names=baltSumm$year,
+        xlab="Year",ylab="Total Emissions (Tons)",
+        main="Yearly PM2.5 Emissions Baltimore City",
+        col="orange")
+
+## 3 check changes by type over time in baltimore city.
