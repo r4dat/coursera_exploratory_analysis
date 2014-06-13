@@ -1,7 +1,7 @@
 
 # Set string Variables
 localdir=getwd()
-filename="household_power_consumption.txt"
+filename="summarySCC_PM25.rds"
 
 # IF file doesn't exist in working direcotry, dl to tmp and expand in wd.
 if(!(file_test(op="-f",x=paste(localdir,'/',filename,sep='')))){
@@ -11,7 +11,7 @@ td <- tempdir()
 
 # run the download file function, download as binary..  save the result to the temporary file
 download.file(
-  "https://d396qusza40orc.cloudfront.net/exdata/data/household_power_consumption.zip",
+  "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip",
   tf ,
   mode = 'wb' 
 )
@@ -20,14 +20,6 @@ download.file(
 files <- unzip( tf , exdir = getwd() )
 }
 
-require(lubridate)
-require(dplyr)
-
-#Read in and subset
-full_power = read.csv(paste(localdir,'/',filename,sep=''),
-  sep=";",stringsAsFactors=FALSE,na.strings="?")
-
-full_power$Date=dmy(full_power$Date)
-subpower=filter(full_power,
-                Date>=mdy("02012007"),Date<=mdy("02022007"))
-
+# Read in data files.
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
