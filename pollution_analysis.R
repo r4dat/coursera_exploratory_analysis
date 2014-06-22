@@ -14,3 +14,8 @@ source("plot3.R")
 ## Question 4
 source("plot4.R")
 
+## Question 5
+source("plot5.R")
+
+## Question 6
+source("plot6.R")
