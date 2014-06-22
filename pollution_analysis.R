@@ -1,5 +1,6 @@
 require(plyr)
 require(ggplot2)
+require(sqldf)
 source("get_data.R")
 
 totSumm = ddply(NEI,.(year),summarize,ToTEmissions=sum(Emissions))
@@ -31,3 +32,7 @@ ggplot(data=baltsplit, aes(x=year,y=TotEmissions))+geom_bar(stat="identity")+
   scale_x_continuous(breaks=c(1999,2002,2005,2008))+facet_wrap(~type) + 
   xlab("By Year") + ylab("Tons Emissions") + 
   ggtitle("Emissions in Baltimore by Source")
+
+
+## 4 Across the United States, how have emissions from coal combustion-related 
+## sources changed from 1999–2008?
