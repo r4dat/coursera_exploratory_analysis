@@ -1,5 +1,6 @@
 require(plyr)
 require(ggplot2)
+source("multiplot.R")
 ## Assumes NEI and SCC data have already been read in calling file.
 
 ## Get baltimore city.
@@ -29,19 +30,17 @@ cityVehic = rbind(losvehic,baltvehic)
 # Plot vehic emissions by city?
 png(filename="plot6.png",width=400,height=400,units = "px")
 
-ggplot(data=cityVehic, aes(x=year, y=Emissions, fill=city)) + 
+p1 = ggplot(data=cityVehic, aes(x=year, y=Emissions, fill=city)) + 
   geom_bar(stat="identity", position=position_dodge(), colour="black")+
   scale_x_continuous(breaks=c(1999,2002,2005,2008))+ xlab("By Year") + ylab("Tons Emissions") + 
   ggtitle("Vehicle Emissions in Los Angeles and Baltimore")
 
-dev.off()
-
 ## Create log transformed version. This however makes it harder to view the increase in Los Angeles.
-png(filename="logplot6.png",width=400,height=400,units = "px")
-
-ggplot(data=cityVehic, aes(x=year, y=log(Emissions), fill=city)) + 
+p2 = ggplot(data=cityVehic, aes(x=year, y=log(Emissions), fill=city)) + 
   geom_bar(stat="identity", position=position_dodge(), colour="black")+
-  scale_x_continuous(breaks=c(1999,2002,2005,2008))+ xlab("By Year") + ylab("Tons Emissions") + 
-  ggtitle("Vehicle Log(Emissions) in Los Angeles and Baltimore")
+  scale_x_continuous(breaks=c(1999,2002,2005,2008))+ xlab("By Year") + ylab("Log(Tons) Emissions") + 
+  ggtitle("Log(Emissions) in Los Angeles and Baltimore")
 
+
+multiplot(p1,p2)
 dev.off()

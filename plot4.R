@@ -27,7 +27,7 @@ png(filename="plot4.png",width=400,height=400,units = "px")
 
 barplot(coalTotEm$Emissions/1000,names=coalTotEm$year,
         xlab="Year",ylab="Total Emissions (1000's of Tons)",
-        main="PM2.5 Emissions from Coal Combustion. and related sources",
+        main="PM2.5 Emissions of US coal combustion",
         col="green")
 
 dev.off()
