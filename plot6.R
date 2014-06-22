@@ -31,7 +31,8 @@ png(filename="plot6.png",width=400,height=400,units = "px")
 
 ggplot(data=cityVehic, aes(x=year, y=Emissions, fill=city)) + 
   geom_bar(stat="identity", position=position_dodge(), colour="black")+
-  scale_x_continuous(breaks=c(1999,2002,2005,2008))
+  scale_x_continuous(breaks=c(1999,2002,2005,2008))+ xlab("By Year") + ylab("Tons Emissions") + 
+  ggtitle("Vehicle Emissions in Los Angeles and Baltimore")
 
 dev.off()
 
@@ -40,6 +41,7 @@ png(filename="logplot6.png",width=400,height=400,units = "px")
 
 ggplot(data=cityVehic, aes(x=year, y=log(Emissions), fill=city)) + 
   geom_bar(stat="identity", position=position_dodge(), colour="black")+
-  scale_x_continuous(breaks=c(1999,2002,2005,2008))
+  scale_x_continuous(breaks=c(1999,2002,2005,2008))+ xlab("By Year") + ylab("Tons Emissions") + 
+  ggtitle("Vehicle Log(Emissions) in Los Angeles and Baltimore")
 
 dev.off()
