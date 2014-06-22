@@ -2,61 +2,15 @@ require(plyr)
 require(ggplot2)
 source("get_data.R")
 
-totSumm = ddply(NEI,.(year),summarize,ToTEmissions=sum(Emissions))
+## Question 1
+source("plot1.R")
 
-## initial barplot, not vert axis change yet. Total country wide.
-barplot(totSumm$ToTEmissions/1000,names=totSumm$year,
-        xlab="Year",ylab="Total Emissions (1000's of Tons)",
-        main="Yearly PM2.5 Emissions",
-        col="red")
+## Question 2
+source("plot2.R")
 
-# Check baltimore city Maryland, FIPS 24510
-balt_all = NEI[NEI$fips=="24510",]
+## Question 3
+source("plot3.R")
 
+## Question 4
+source("plot4.R")
 
-baltSumm = ddply(balt_all,.(year),
-                 summarize,ToTEmissions=sum(Emissions))
-
-barplot(baltSumm$ToTEmissions,names=baltSumm$year,
-        xlab="Year",ylab="Total Emissions (Tons)",
-        main="Yearly PM2.5 Emissions Baltimore City",
-        col="orange")
-
-## 3 check changes by type over time in baltimore city.
-baltsplit = ddply(balt_all,.(type,year),
-                  summarize,TotEmissions=sum(Emissions))
-
-## Plot faceted versions. Currently dot plot.
-ggplot(data=baltsplit, aes(x=year,y=TotEmissions))+geom_bar(stat="identity")+
-  scale_x_continuous(breaks=c(1999,2002,2005,2008))+facet_wrap(~type) + 
-  xlab("By Year") + ylab("Tons Emissions") + 
-  ggtitle("Emissions in Baltimore by Source")
-
-
-## 4 Across the United States, how have emissions from coal combustion-related 
-## sources changed from 1999–2008?
-
-## Create subset of SCC id's with coal and lignite (brown coal) (and not charcoal.)
-## Return line if LevelThree is (coal OR lignite AND NOT charcoal)
-coalIndex = which( 
-                  (grepl(pattern = "coal",SCC$SCC.Level.Three,ignore.case=TRUE)
-                  | 
-                  grepl(pattern = "lignite",SCC$SCC.Level.Three,ignore.case=TRUE))
-                  &
-                  !grepl(pattern="Charcoal",SCC$SCC.Level.Three,ignore.case=TRUE)
-                  )
-
-coalSCC = SCC[coalIndex,1]
-
-coalNEI = subset(NEI, SCC %in% coalSCC)
-
-coalTotEm = aggregate(Emissions ~ year, data=coalNEI, sum)
-
-# Plot coal emissions.
-
-barplot(coalTotEm$Emissions/1000,names=coalTotEm$year,
-        xlab="Year",ylab="Total Emissions (1000's of Tons)",
-        main="PM2.5 Emissions from Coal Combustion. and related sources",
-        col="green")
-
-## 5
