@@ -1,5 +1,8 @@
 require(plyr)
+#source("get_data.R")
 # Check baltimore city Maryland, FIPS 24510
+## Assumes NEI and SCC data have already been read in calling file.
+
 balt_all = NEI[NEI$fips=="24510",]
 
 

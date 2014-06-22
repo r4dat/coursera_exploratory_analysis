@@ -1,5 +1,9 @@
 require(plyr)
 require(ggplot2)
+#source("get_data.R")
+
+## Assumes NEI and SCC data have already been read in calling file.
+
 ## 3 check changes by type over time in baltimore city.
 balt_all = NEI[NEI$fips=="24510",]
 

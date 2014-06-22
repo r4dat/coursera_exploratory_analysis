@@ -1,5 +1,6 @@
-source("get_data.R")
 require(plyr)
+#source("get_data.R")
+## Assumes NEI and SCC data have already been read in calling file.
 
 totSumm = ddply(NEI,.(year),summarize,ToTEmissions=sum(Emissions))
 

@@ -1,5 +1,8 @@
 require(plyr)
 require(ggplot2)
+## Assumes NEI and SCC data have already been read in calling file.
+
+#source("get_data.R")
 ## 4 Across the United States, how have emissions from coal combustion-related 
 ## sources changed from 1999–2008?
 
@@ -10,7 +13,7 @@ coalIndex = which(
    | 
      grepl(pattern = "lignite",SCC$SCC.Level.Three,ignore.case=TRUE))
   &
-    !grepl(pattern="Charcoal",SCC$SCC.Level.Three,ignore.case=TRUE)
+    !grepl(pattern="charcoal",SCC$SCC.Level.Three,ignore.case=TRUE)
 )
 
 coalSCC = SCC[coalIndex,1]
