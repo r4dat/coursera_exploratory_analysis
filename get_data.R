@@ -11,9 +11,10 @@ td <- tempdir()
 
 # run the download file function, download as binary..  save the result to the temporary file
 download.file(
-  "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip",
+  url="https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip",
   tf ,
-  mode = 'wb' 
+  mode = 'wb', 
+  method="curl"
 )
 
 # unzip the files to the temporary directory
