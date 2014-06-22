@@ -11,8 +11,10 @@ barplot(totSumm$ToTEmissions/1000,names=totSumm$year,
         col="red")
 
 # Check baltimore city Maryland, FIPS 24510
+balt_all = NEI[NEI$fips=="24510",]
 
-baltSumm = ddply(NEI[NEI$fips=="24510",],.(year),
+
+baltSumm = ddply(balt_all,.(year),
                  summarize,ToTEmissions=sum(Emissions))
 
 barplot(baltSumm$ToTEmissions,names=baltSumm$year,
@@ -26,3 +28,4 @@ baltsplit = ddply(balt_all,.(type,year),
 
 ## Plot faceted versions. Currently dot plot.
 ggplot(baltsplit,aes(x=year))+stat_identity(aes(y=TotEmissions))+facet_wrap(~type)
++scale_x_continuous(breaks=c(1999,2002,2005,2008))
