@@ -34,3 +34,12 @@ ggplot(data=cityVehic, aes(x=year, y=Emissions, fill=city)) +
   scale_x_continuous(breaks=c(1999,2002,2005,2008))
 
 dev.off()
+
+## Create log transformed version. This however makes it harder to view the increase in Los Angeles.
+png(filename="logplot6.png",width=400,height=400,units = "px")
+
+ggplot(data=cityVehic, aes(x=year, y=log(Emissions), fill=city)) + 
+  geom_bar(stat="identity", position=position_dodge(), colour="black")+
+  scale_x_continuous(breaks=c(1999,2002,2005,2008))
+
+dev.off()
