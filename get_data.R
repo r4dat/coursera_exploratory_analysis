@@ -20,8 +20,7 @@ download.file(
 # unzip the files to the temporary directory
 files <- unzip( tf , exdir = getwd() )
 
-
+}
 # Read in data files.
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
-}
